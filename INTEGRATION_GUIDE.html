@@ -1,0 +1,185 @@
+<!-- 
+    INTEGRATION GUIDE FOR index.html
+    Add these sections to your existing index.html file
+-->
+
+<!-- ============================================ -->
+<!-- STEP 1: Add Firebase SDKs to <head> section -->
+<!-- ============================================ -->
+<!-- 
+Add this before your closing </head> tag:
+
+<script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+-->
+
+<!-- ============================================ -->
+<!-- STEP 2: Add Auth Components after <body> -->
+<!-- ============================================ -->
+<!-- Include auth-components.html content directly in index.html -->
+
+<!-- ============================================ -->
+<!-- STEP 3: Update Navigation Bar -->
+<!-- ============================================ -->
+<!-- 
+In your navbar, update the login button area with:
+
+<div class="nav-links">
+    <!-- Existing nav items -->
+    
+    <!-- User Display (shows when logged in) -->
+    <div id="userNameDisplay" style="display: flex; align-items: center; gap: 10px;"></div>
+    
+    <!-- User Profile Sidebar Trigger -->
+    <div id="userProfileSidebar" class="user-profile-sidebar">
+        <!-- Content from auth-components.html -->
+    </div>
+</div>
+-->
+
+<!-- ============================================ -->
+<!-- STEP 4: Add Products Container -->
+<!-- ============================================ -->
+<!-- 
+Your existing products section should have:
+
+<section id="products">
+    <div class="container">
+        <h2>المنتجات المتاحة</h2>
+        <div id="productsContainer" class="products-grid">
+            <!-- Products will be dynamically loaded here -->
+        </div>
+    </div>
+</section>
+-->
+
+<!-- ============================================ -->
+<!-- STEP 5: Add Scripts before </body> -->
+<!-- ============================================ -->
+<!-- 
+Add these at the end before </body>:
+
+<!-- Firebase and Modules -->
+<script type="module" src="firebase.ts"></script>
+<script type="module" src="firebase-integration.js"></script>
+<script type="module" src="auth-handler.js"></script>
+
+<!-- Your existing scripts -->
+<script src="script.js"></script>
+-->
+
+<!-- ============================================ -->
+<!-- MINIMAL EXAMPLE HTML STRUCTURE -->
+<!-- ============================================ -->
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webaidea</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Webaidea</a>
+            <div class="nav-links">
+                <a href="#products">المنتجات</a>
+                
+                <!-- Login Button -->
+                <button class="login-btn" onclick="openAuthModal()">
+                    <i class="fas fa-user"></i> تسجيل دخول
+                </button>
+                
+                <!-- User Display (hidden by default) -->
+                <div id="userNameDisplay"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Products Section -->
+    <section id="products">
+        <div class="container">
+            <h2>المنتجات المتاحة</h2>
+            <div id="productsContainer" class="products-grid">
+                <!-- Products loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Auth Components (from auth-components.html) -->
+    <div id="authModal" class="modal">
+        <!-- Login form here -->
+    </div>
+
+    <div id="productModal" class="modal">
+        <!-- Product form here -->
+    </div>
+
+    <!-- User Profile Sidebar -->
+    <div id="userProfileSidebar" class="user-profile-sidebar">
+        <!-- Profile menu here -->
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="firebase.ts"></script>
+    <script type="module" src="firebase-integration.js"></script>
+    <script type="module" src="auth-handler.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!-- ============================================ -->
+<!-- CSS GRID FOR PRODUCTS -->
+<!-- ============================================ -->
+<!-- 
+Add to your style.css:
+
+#productsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    #productsContainer {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+-->
+
+<!-- ============================================ -->
+<!-- QUICK TEST CHECKLIST -->
+<!-- ============================================ -->
+<!--
+✓ Firebase SDKs loaded in <head>
+✓ firebase.ts file exists with credentials
+✓ firebase-integration.js imported
+✓ auth-handler.js imported
+✓ auth-components.html modals added to index.html
+✓ #productsContainer div exists
+✓ Login button calls openAuthModal()
+✓ Firebase project has Authentication enabled
+✓ Firebase project has Firestore database created
+✓ Domain authorized in Firebase Console
+✓ Run local server: python -m http.server 3000
+✓ Test Google Sign-In button
+✓ Test Add Product button (after login)
+-->
