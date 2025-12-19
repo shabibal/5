@@ -23,7 +23,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Tajawal', 'Almarai', 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 html {
@@ -32,6 +31,7 @@ html {
 }
 
 body {
+    font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
@@ -57,12 +57,15 @@ body::before {
 
 /* شريط التنقل - تصميم متجاوب */
 .navbar {
-    background: white;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem 5%;
     position: sticky;
     top: 0;
     z-index: 1000;
-    padding: 15px 0;
+    transition: var(--transition);
 }
 
 .nav-container {
@@ -71,18 +74,17 @@ body::before {
     align-items: center;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 20px;
     gap: 1rem;
 }
 
 .logo {
-    font-size: 1.8rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
     font-weight: 800;
-    color: #1a2a6c;
+    color: var(--primary-color);
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     white-space: nowrap;
 }
 
@@ -131,11 +133,10 @@ body::before {
 
 /* أزرار جديدة في شريط التنقل */
 .btn-contact {
-    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white !important;
-    padding: 10px 20px !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
+    padding: 0.6rem 1.2rem !important;
+    border-radius: 50px;
     box-shadow: var(--shadow);
     transition: var(--transition);
     font-size: clamp(0.85rem, 1.5vw, 0.95rem);
@@ -144,14 +145,15 @@ body::before {
 .btn-contact:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-hover);
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
 }
 
 .login-btn {
-    background: #4361ee;
-    color: white !important;
-    padding: 10px 20px !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
+    background: rgba(67, 97, 238, 0.1);
+    color: var(--primary-color) !important;
+    padding: 0.6rem 1.2rem !important;
+    border-radius: 50px;
+    border: 1px solid rgba(67, 97, 238, 0.2);
     transition: var(--transition);
     font-size: clamp(0.85rem, 1.5vw, 0.95rem);
 }
@@ -163,11 +165,10 @@ body::before {
 }
 
 .admin-dashboard-btn {
-    background: #7209b7;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
     color: white !important;
-    padding: 10px 20px !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
+    padding: 0.6rem 1.2rem !important;
+    border-radius: 50px;
     box-shadow: var(--shadow);
     transition: var(--transition);
     font-size: clamp(0.85rem, 1.5vw, 0.95rem);
@@ -181,11 +182,11 @@ body::before {
 }
 
 .logout-btn {
-    background: #dc3545;
-    color: white !important;
-    padding: 10px 20px !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
+    background: rgba(108, 117, 125, 0.1);
+    color: var(--text-light) !important;
+    padding: 0.6rem 1.2rem !important;
+    border-radius: 50px;
+    border: 1px solid rgba(108, 117, 125, 0.2);
     transition: var(--transition);
     font-size: clamp(0.85rem, 1.5vw, 0.95rem);
     display: none;
@@ -214,7 +215,7 @@ body::before {
     justify-content: space-between;
     padding: clamp(2rem, 5vw, 4rem) 5%;
     max-width: 1400px;
-    margin: 40px auto;
+    margin: 0 auto;
     gap: clamp(2rem, 5vw, 3rem);
     flex-wrap: wrap;
 }
@@ -226,13 +227,13 @@ body::before {
 
 .hero h1 {
     font-size: clamp(1.8rem, 5vw, 3.2rem);
-    margin-bottom: 20px;
-    color: #1a2a6c;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
     line-height: 1.2;
 }
 
 .highlight {
-    color: #ff7e5f;
+    color: var(--primary-color);
     position: relative;
     display: inline-block;
 }
@@ -251,27 +252,27 @@ body::before {
 .hero p {
     font-size: clamp(1rem, 2.5vw, 1.2rem);
     color: var(--text-light);
-    margin-bottom: 30px;
+    margin-bottom: 2rem;
     max-width: 600px;
     line-height: 1.6;
 }
 
 .hero-buttons {
     display: flex;
-    gap: 20px;
+    gap: 1rem;
     flex-wrap: wrap;
 }
 
 .btn {
-    padding: 14px 28px;
-    border-radius: 10px;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    transition: all 0.3s;
+    gap: 8px;
+    transition: var(--transition);
     border: none;
     cursor: pointer;
     font-size: clamp(0.9rem, 2vw, 1rem);
@@ -280,28 +281,29 @@ body::before {
 }
 
 .btn-primary {
-    background: #4361ee;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     box-shadow: var(--shadow);
 }
 
 .btn-secondary {
-    background: #ff7e5f;
-    color: white;
+    background: white;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
     box-shadow: var(--shadow);
 }
 
 .btn-primary:hover, .btn-secondary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    box-shadow: var(--shadow-hover);
 }
 
 .hero-image {
     flex: 1;
     min-width: min(100%, 350px);
-    border-radius: 20px;
+    border-radius: var(--radius);
     overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-hover);
     aspect-ratio: 16/9;
     max-height: 400px;
 }
@@ -314,25 +316,25 @@ body::before {
 }
 
 .hero-image:hover img {
-    transform: scale(1.02);
+    transform: scale(1.03);
 }
 
 /* قسم المنتجات - تصميم شبكي متجاوب */
 .products-section {
     padding: clamp(2rem, 5vw, 4rem) 5%;
     max-width: 1400px;
-    margin: 60px auto;
+    margin: 0 auto;
 }
 
 .section-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
 }
 
 .section-header h2 {
     font-size: clamp(1.8rem, 4vw, 2.5rem);
-    color: #1a2a6c;
-    margin-bottom: 15px;
+    color: var(--dark-color);
+    margin-bottom: 1rem;
 }
 
 .section-header p {
@@ -345,8 +347,8 @@ body::before {
 
 .products-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+    gap: clamp(1rem, 3vw, 2rem);
     padding: 1rem 0;
 }
 
@@ -364,7 +366,7 @@ body::before {
 
 .product-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    box-shadow: var(--shadow-hover);
 }
 
 .product-image {
@@ -479,7 +481,7 @@ body::before {
 .how-section {
     padding: clamp(2rem, 5vw, 4rem) 5%;
     background: rgba(255, 255, 255, 0.7);
-    margin: 80px auto;
+    margin: 2rem auto;
     max-width: 1400px;
     border-radius: var(--radius);
 }
@@ -487,32 +489,32 @@ body::before {
 .how-section h2 {
     text-align: center;
     font-size: clamp(1.8rem, 4vw, 2.5rem);
-    margin-bottom: 50px;
-    color: #1a2a6c;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+    color: var(--dark-color);
 }
 
 .steps {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
-    gap: 30px;
+    gap: clamp(1.5rem, 3vw, 2rem);
     padding: 1rem;
 }
 
 .step {
     background: white;
-    padding: 30px;
-    border-radius: 15px;
+    border-radius: var(--radius);
+    padding: clamp(1.5rem, 3vw, 2rem);
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    transition: transform 0.3s;
-    border-top: 5px solid #4361ee;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border-top: 4px solid var(--primary-color);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .step:hover {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
     box-shadow: var(--shadow-hover);
 }
 
@@ -527,12 +529,12 @@ body::before {
     justify-content: center;
     font-size: clamp(1.5rem, 3vw, 1.8rem);
     font-weight: 700;
-    margin: 0 auto 20px;
+    margin: 0 auto 1.5rem;
 }
 
 .step h3 {
-    color: #1a2a6c;
-    margin-bottom: 15px;
+    color: var(--dark-color);
+    margin-bottom: 0.8rem;
     font-size: clamp(1.1rem, 2vw, 1.3rem);
 }
 
@@ -544,11 +546,11 @@ body::before {
 
 /* الفوتر */
 .footer {
-    background: #1a2a6c;
+    background: linear-gradient(135deg, var(--dark-color), #111);
     color: white;
     padding: clamp(2rem, 4vw, 3rem) 5%;
     text-align: center;
-    margin-top: 80px;
+    margin-top: 4rem;
 }
 
 .footer-content {
@@ -557,31 +559,27 @@ body::before {
 }
 
 .footer-logo {
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-size: clamp(1.8rem, 4vw, 2.2rem);
     font-weight: 700;
-    margin-bottom: 20px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
 }
 
 .footer p {
-    color: #e0e0ff;
-    margin-bottom: 30px;
+    color: #bbb;
+    margin-bottom: 2rem;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    font-size: clamp(0.9rem, 2vw, 1.1rem);
-    line-height: 1.8;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    line-height: 1.6;
 }
 
 .footer-links {
     display: flex;
     justify-content: center;
-    gap: 25px;
-    margin: 30px 0;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    margin-bottom: 2rem;
     flex-wrap: wrap;
 }
 
@@ -599,14 +597,13 @@ body::before {
 }
 
 .footer-links a:hover {
-    color: #ffd700;
+    color: var(--primary-color);
     transform: translateY(-3px);
     background: white;
 }
 
 .copyright {
-    color: #aaa;
-    margin-top: 30px;
+    color: #888;
     font-size: clamp(0.8rem, 1.5vw, 0.9rem);
     border-top: 1px solid #333;
     padding-top: 2rem;
@@ -648,14 +645,13 @@ body::before {
 /* لوحة الإدارة - تصميم متجاوب */
 .admin-panel {
     display: none;
-    background: #f8f9fa;
+    background: white;
     border-radius: var(--radius);
     box-shadow: var(--shadow-hover);
     margin: 1rem auto;
     max-width: 1400px;
     overflow: hidden;
     min-height: 80vh;
-    padding: 20px;
 }
 
 /* تحسين تنسيق رأس الإدارة */
@@ -664,13 +660,10 @@ body::before {
     justify-content: space-between;
     align-items: center;
     padding: clamp(1rem, 2vw, 1.5rem);
-    background: white;
-    color: #1a2a6c;
+    background: linear-gradient(135deg, var(--dark-color), #111);
+    color: white;
     flex-wrap: wrap;
     gap: 1rem;
-    border-radius: 15px;
-    margin-bottom: 30px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
 .admin-header-left {
@@ -689,7 +682,7 @@ body::before {
 }
 
 .btn-logout {
-    background: #dc3545;
+    background: rgba(255, 255, 255, 0.1);
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 0.6rem 1.5rem;
@@ -716,8 +709,6 @@ body::before {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    margin-bottom: 30px;
-    gap: 10px;
 }
 
 .admin-tabs::-webkit-scrollbar {
@@ -725,14 +716,14 @@ body::before {
 }
 
 .tab-link {
-    padding: 12px 25px;
-    background: white;
+    padding: clamp(0.8rem, 2vw, 1rem) clamp(1rem, 2vw, 1.5rem);
+    background: none;
     border: none;
-    border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
-    color: #555;
-    transition: all 0.3s;
+    color: var(--text-light);
+    border-bottom: 3px solid transparent;
+    transition: var(--transition);
     white-space: nowrap;
     font-size: clamp(0.85rem, 1.5vw, 0.95rem);
     flex-shrink: 0;
@@ -744,9 +735,9 @@ body::before {
 }
 
 .tab-link.active {
-    background: #4361ee;
-    color: white;
+    color: var(--primary-color);
     border-bottom-color: var(--primary-color);
+    background: white;
 }
 
 .admin-content {
@@ -803,19 +794,16 @@ body::before {
 
 .table-container {
     overflow-x: auto;
-    border-radius: 15px;
+    border-radius: 10px;
     border: 1px solid var(--border-color);
-    background: white;
-    padding: 20px;
     margin: 1rem 0;
     -webkit-overflow-scrolling: touch;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 800px;
+    min-width: 600px;
 }
 
 thead {
@@ -828,19 +816,18 @@ th {
     padding: clamp(0.8rem, 1.5vw, 1rem);
     text-align: right;
     font-weight: 700;
-    color: #1a2a6c;
+    color: var(--dark-color);
     border-bottom: 2px solid var(--border-color);
     font-size: clamp(0.85rem, 1.5vw, 0.95rem);
     white-space: nowrap;
 }
 
 td {
-    padding: 15px;
-    border-bottom: 1px solid #eee;
+    padding: clamp(0.8rem, 1.5vw, 1rem);
+    border-bottom: 1px solid var(--border-color);
     color: var(--text-color);
     font-size: clamp(0.8rem, 1.5vw, 0.9rem);
     vertical-align: middle;
-    text-align: right;
 }
 
 tr:hover {
@@ -927,16 +914,15 @@ tr:hover {
 
 .modal-content {
     background: white;
-    padding: 30px;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 500px;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border-radius: var(--radius);
+    width: 100%;
+    max-width: min(500px, 95vw);
     max-height: 90vh;
     overflow-y: auto;
     box-shadow: var(--shadow-hover);
     animation: modalFade 0.3s;
     position: relative;
-    margin: 5% auto;
 }
 
 @keyframes modalFade {
@@ -946,11 +932,11 @@ tr:hover {
 
 .close-modal, .close-detail {
     position: absolute;
-    left: 15px;
-    top: 15px;
+    left: 1.5rem;
+    top: 1rem;
     font-size: 1.8rem;
     cursor: pointer;
-    color: #999;
+    color: var(--text-light);
     line-height: 1;
     width: 30px;
     height: 30px;
@@ -967,14 +953,14 @@ tr:hover {
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 1.5rem;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
-    color: #555;
-    font-weight: 500;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--dark-color);
     font-size: clamp(0.9rem, 1.5vw, 1rem);
 }
 
@@ -982,9 +968,9 @@ tr:hover {
 .form-group textarea,
 .form-group select {
     width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    padding: 0.9rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
     font-size: clamp(0.9rem, 1.5vw, 1rem);
     transition: var(--transition);
     background: var(--light-color);
@@ -994,7 +980,7 @@ tr:hover {
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
-    border-color: #4361ee;
+    border-color: var(--primary-color);
     outline: none;
     background: white;
     box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
@@ -1014,34 +1000,34 @@ tr:hover {
 }
 
 .btn-submit {
-    background: #4361ee;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
-    border: none;
-    padding: 14px 30px;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
     width: 100%;
-    transition: background 0.3s;
+    padding: 1rem;
+    border-radius: 10px;
+    border: none;
+    font-weight: 700;
+    font-size: clamp(0.95rem, 1.5vw, 1rem);
+    cursor: pointer;
+    transition: var(--transition);
     margin-top: 1rem;
 }
 
 .btn-submit:hover {
-    background: #3a0ca3;
     transform: translateY(-2px);
     box-shadow: var(--shadow);
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
 }
 
 .switch-mode {
     text-align: center;
-    margin-top: 20px;
-    color: #666;
+    margin-top: 1.5rem;
+    color: var(--text-light);
     font-size: clamp(0.85rem, 1.5vw, 0.95rem);
 }
 
 .switch-mode a {
-    color: #4361ee;
+    color: var(--primary-color);
     text-decoration: none;
     font-weight: 600;
     transition: var(--transition);
@@ -1235,20 +1221,21 @@ tr:hover {
 @media (max-width: 768px) {
     .nav-links {
         display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
+        position: fixed;
+        top: 70px;
         right: 0;
         background: white;
-        padding: 20px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        width: 100%;
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: var(--shadow-hover);
+        border-top: 1px solid var(--border-color);
         z-index: 999;
         max-height: calc(100vh - 70px);
         overflow-y: auto;
     }
     
-    .nav-links.show {
+    .nav-links.active {
         display: flex;
     }
     
@@ -1261,7 +1248,6 @@ tr:hover {
         border-radius: 0;
         margin: 0 -1rem;
         width: calc(100% + 2rem);
-        padding: 10px;
     }
     
     table {
@@ -1330,19 +1316,6 @@ tr:hover {
     .nav-links {
         gap: 10px;
     }
-    
-    .hero {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-    
-    .nav-links.show {
-        display: flex;
-    }
 }
 
 @media (max-width: 480px) {
@@ -1379,28 +1352,6 @@ tr:hover {
     
     .admin-header h2 {
         font-size: 1.1rem;
-    }
-    
-    .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .btn {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .modal-content {
-        padding: 20px;
-        width: 95%;
-    }
-    
-    .tab-link {
-        flex: 1;
-        text-align: center;
-        padding: 10px 15px;
-        font-size: 0.9rem;
     }
 }
 
@@ -1479,10 +1430,6 @@ tr:hover {
     .how-section {
         background: rgba(45, 45, 45, 0.7);
     }
-    
-    .footer {
-        background: linear-gradient(135deg, #111, #000);
-    }
 }
 
 /* تحسينات للطباعة */
@@ -1504,21 +1451,5 @@ tr:hover {
     
     .hero, .how-section {
         page-break-before: always;
-    }
-}
-
-/* تصميم متجاوب إضافي */
-@media (max-width: 992px) {
-    .hero {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-    
-    .steps {
-        grid-template-columns: repeat(2, 1fr);
     }
 }
