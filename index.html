@@ -3,277 +3,453 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webaidea - سوق التجار الإلكتروني</title>
-    <link rel="stylesheet" href="style.css">
+    <title>سقيا الماء - لوحة التحكم</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- إضافة مكتبة Supabase -->
-    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- شريط التنقل العلوي -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">Webaidea</a>
-            <div class="nav-links">
-                <a href="#products">المنتجات</a>
-                <a href="#how-it-works">كيفية العمل</a>
-                <a href="javascript:void(0);" class="btn-contact" onclick="redirectToInstagram()">
-                    <i class="fas fa-bullhorn"></i> التواصل لنشر إعلانك
-                </a>
-                <!-- زر تسجيل الدخول الرئيسي -->
-                <a href="javascript:void(0);" class="login-btn" onclick="openAuthModal()">
-                    <i class="fas fa-user"></i> تسجيل دخول
-                </a>
-                <!-- زر دخول الإدارة (سيكون مخفي وستظهر عند تسجيل دخول المدير) -->
-                <a href="javascript:void(0);" id="adminDashboardBtn" class="admin-dashboard-btn" style="display: none;" onclick="showAdminPanel()">
-                    <i class="fas fa-cogs"></i> لوحة الإدارة
-                </a>
-                <!-- زر الخروج (سيكون مخفي وستظهر عند تسجيل دخول أي مستخدم) -->
-                <a href="javascript:void(0);" id="logoutBtn" class="logout-btn" style="display: none;" onclick="logoutUser()">
-                    <i class="fas fa-sign-out-alt"></i> تسجيل خروج
-                </a>
+    <!-- Water Drops Background -->
+    <div id="waterDropsContainer"></div>
+    <div class="water-overlay"></div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-tint"></i>
+                    <span>سقيا الماء</span>
+                </div>
+                <div class="admin-info">
+                    <img src="https://picsum.photos/seed/admin/50/50" alt="Admin">
+                    <div>
+                        <div class="admin-name">مدير النظام</div>
+                        <div class="admin-role">مدير</div>
+                    </div>
+                </div>
             </div>
-            <button class="menu-toggle" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </nav>
-
-    <!-- نموذج تسجيل الدخول / تسجيل جديد -->
-    <div id="authModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle">تسجيل الدخول</h2>
-            <form id="authForm" onsubmit="handleAuth(event)">
-                <div class="form-group">
-                    <label for="email">البريد الإلكتروني</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">كلمة المرور</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <div class="form-group" id="nameField" style="display: none;">
-                    <label for="name">الاسم الكامل</label>
-                    <input type="text" id="name" name="name">
-                </div>
-                <button type="submit" class="btn-submit" id="submitBtn">دخول</button>
-            </form>
-            <p class="switch-mode">
-                <span id="switchText">ليس لديك حساب؟</span>
-                <a href="javascript:void(0);" onclick="switchAuthMode()" id="switchLink">انشاء حساب جديد</a>
-            </p>
-        </div>
-    </div>
-
-    <!-- لوحة الإدارة (ستظهر فقط للمدير) -->
-    <div id="adminPanel" class="admin-panel" style="display: none;">
-        <div class="admin-header">
-            <div class="admin-header-left">
-                <button class="btn-back" onclick="goToMainSite()" title="العودة للقائمة الرئيسية">
-                    <i class="fas fa-arrow-right"></i> العودة للرئيسية
+            
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span>لوحة التحكم</span>
+                </a>
+                <a href="#products" class="nav-item" data-section="products">
+                    <i class="fas fa-box"></i>
+                    <span>المنتجات</span>
+                </a>
+                <a href="#discounts" class="nav-item" data-section="discounts">
+                    <i class="fas fa-percentage"></i>
+                    <span>الخصومات</span>
+                </a>
+                <a href="#hadiths" class="nav-item" data-section="hadiths">
+                    <i class="fas fa-book-quran"></i>
+                    <span>الأحاديث والآيات</span>
+                </a>
+                <a href="#donations" class="nav-item" data-section="donations">
+                    <i class="fas fa-hand-holding-water"></i>
+                    <span>التبرعات</span>
+                </a>
+                <a href="#settings" class="nav-item" data-section="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>الإعدادات</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    تسجيل الخروج
                 </button>
-                <h2><i class="fas fa-cogs"></i> لوحة تحكم الإدارة</h2>
             </div>
-            <button class="btn-logout" onclick="logoutAdmin()">
-                تسجيل خروج <i class="fas fa-sign-out-alt"></i>
-            </button>
-        </div>
-        <div class="admin-tabs">
-            <button class="tab-link active" onclick="openAdminTab(event, 'tabMerchants')">التجار</button>
-            <button class="tab-link" onclick="openAdminTab(event, 'tabAccounts')">الحسابات</button>
-            <button class="tab-link" onclick="openAdminTab(event, 'tabAds')">الإعلانات المنشورة</button>
-            <button class="tab-link" onclick="openAdminTab(event, 'tabPostAd')">نشر إعلان</button>
-        </div>
-        <div class="admin-content">
-            <!-- تبويب التجار -->
-            <div id="tabMerchants" class="tab-content active-tab">
-                <h3><i class="fas fa-user-tie"></i> قائمة التجار المعتمدين</h3>
-                <p>الحسابات التي يمكنها نشر الإعلانات.</p>
-                <div class="search-box">
-                    <input type="text" id="searchMerchant" placeholder="البحث عن تاجر بالبريد أو الاسم..." onkeyup="searchTable('merchantsTable', this.value)">
-                    <i class="fas fa-search"></i>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title">لوحة التحكم</h1>
                 </div>
-                <div class="table-container">
-                    <table id="merchantsTable">
-                        <thead>
-                            <tr><th>الاسم</th><th>البريد الإلكتروني</th><th>تاريخ الانضمام</th><th>عدد الإعلانات</th><th>الإجراءات</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
+                <div class="header-right">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="بحث...">
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
                 </div>
-            </div>
-            <!-- تبويب الحسابات -->
-            <div id="tabAccounts" class="tab-content">
-                <h3><i class="fas fa-users"></i> جميع الحسابات المسجلة</h3>
-                <p>يمكنك ترقية أي حساب إلى "تاجر".</p>
-                <div class="search-box">
-                    <input type="text" id="searchAccount" placeholder="البحث عن حساب بالبريد..." onkeyup="searchTable('accountsTable', this.value)">
-                    <i class="fas fa-search"></i>
-                </div>
-                <div class="table-container">
-                    <table id="accountsTable">
-                        <thead>
-                            <tr><th>الاسم</th><th>البريد الإلكتروني</th><th>نوع الحساب</th><th>تاريخ التسجيل</th><th>الإجراءات</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-            </div>
-            <!-- تبويب الإعلانات -->
-            <div id="tabAds" class="tab-content">
-                <h3><i class="fas fa-list-alt"></i> جميع الإعلانات المنشورة</h3>
-                <p>عرض جميع المنتجات المعروضة في الموقع.</p>
-                <div class="search-box">
-                    <input type="text" id="searchAd" placeholder="البحث في الإعلانات..." onkeyup="searchTable('adsTable', this.value)">
-                    <i class="fas fa-search"></i>
-                </div>
-                <div class="table-container">
-                    <table id="adsTable">
-                        <thead>
-                            <tr><th>صورة</th><th>اسم المنتج</th><th>السعر (ريال)</th><th>التاجر</th><th>تاريخ النشر</th><th>الإجراءات</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-            </div>
-            <!-- تبويب نشر إعلان جديد -->
-            <div id="tabPostAd" class="tab-content">
-                <h3><i class="fas fa-plus-circle"></i> نشر إعلان جديد (مميز)</h3>
-                <p class="special-notice"><i class="fas fa-crown"></i> هذا الإعلان سيكون بارزًا ومميزًا في الصفحة الرئيسية. للنشر من قبل الإدارة فقط.</p>
-                
-                <form id="adminAdForm" onsubmit="postAdminAd(event)">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="adTitle">عنوان المنتج *</label>
-                            <input type="text" id="adTitle" required>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <div class="stats-grid">
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
                         </div>
-                        <div class="form-group">
-                            <label for="adPrice">السعر (ريال) *</label>
-                            <input type="number" id="adPrice" required>
+                        <div class="stat-info">
+                            <h3>إجمالي المتبرعين</h3>
+                            <div class="stat-number" data-target="1250">0</div>
+                            <span class="stat-change positive">+12%</span>
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="adDescription">وصف المنتج *</label>
-                        <textarea id="adDescription" rows="4" required></textarea>
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-hand-holding-water"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>إجمالي التبرعات</h3>
+                            <div class="stat-number" data-target="45680">0</div>
+                            <span class="stat-change positive">+8%</span>
+                        </div>
                     </div>
                     
-                    <!-- حقل رفع الصورة -->
-                    <div class="form-group">
-                        <label for="productImage">صورة المنتج *</label>
-                        <div class="image-upload-container">
-                            <input type="file" id="productImage" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
-                            <button type="button" class="upload-btn" onclick="document.getElementById('productImage').click()">
-                                <i class="fas fa-upload"></i> اختر صورة
-                            </button>
-                            <div class="image-preview" id="imagePreview">
-                                <i class="fas fa-image" style="font-size: 3rem; color: #ccc;"></i>
-                                <p style="color: #999; margin-top: 10px;">لم يتم اختيار صورة</p>
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>عدد الآبار</h3>
+                            <div class="stat-number" data-target="45">0</div>
+                            <span class="stat-change positive">+5</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>معدل التبرع</h3>
+                            <div class="stat-number" data-target="350">0</div>
+                            <span class="stat-change">ريال</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-charts">
+                    <div class="chart-container glass-card">
+                        <h3>إحصائيات التبرعات الشهرية</h3>
+                        <canvas id="donationsChart"></canvas>
+                    </div>
+                    
+                    <div class="recent-activities glass-card">
+                        <h3>الأنشطة الحديثة</h3>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <i class="fas fa-plus-circle"></i>
+                                <div>
+                                    <div>تبرع جديد</div>
+                                    <small>منذ 5 دقائق</small>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <i class="fas fa-edit"></i>
+                                <div>
+                                    <div>تعديل منتج</div>
+                                    <small>منذ 15 دقيقة</small>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <i class="fas fa-percentage"></i>
+                                <div>
+                                    <div>إضافة خصم جديد</div>
+                                    <small>منذ ساعة</small>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="adContact">رقم التواصل *</label>
-                        <input type="tel" id="adContact" required>
+                </div>
+            </section>
+
+            <!-- Products Section -->
+            <section id="products" class="content-section">
+                <div class="section-header">
+                    <h2>إدارة المنتجات</h2>
+                    <button class="btn-primary" onclick="openProductModal()">
+                        <i class="fas fa-plus"></i> إضافة منتج جديد
+                    </button>
+                </div>
+                
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Discounts Section -->
+            <section id="discounts" class="content-section">
+                <div class="section-header">
+                    <h2>إدارة الخصومات</h2>
+                    <button class="btn-primary" onclick="openDiscountModal()">
+                        <i class="fas fa-plus"></i> إضافة خصم جديد
+                    </button>
+                </div>
+                
+                <div class="discounts-container">
+                    <div class="discount-form glass-card">
+                        <h3>خصم سريع</h3>
+                        <div class="form-group">
+                            <label>نوع الخصم</label>
+                            <select id="discountType">
+                                <option value="percentage">نسبة مئوية</option>
+                                <option value="fixed">مبلغ ثابت</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>قيمة الخصم</label>
+                            <input type="number" id="discountValue" placeholder="أدخل القيمة">
+                        </div>
+                        <div class="form-group">
+                            <label>تطبيق على</label>
+                            <select id="discountScope">
+                                <option value="all">جميع المنتجات</option>
+                                <option value="specific">منتج محدد</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="productSelectGroup" style="display: none;">
+                            <label>اختر المنتج</label>
+                            <select id="discountProduct"></select>
+                        </div>
+                        <button class="btn-primary" onclick="applyQuickDiscount()">
+                            تطبيق الخصم
+                        </button>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="adMerchant">الناشر (التاجر)</label>
-                        <select id="adMerchant">
-                            <option value="">-- اختر تاجر --</option>
-                        </select>
+                    <div class="active-discounts glass-card">
+                        <h3>الخصومات النشطة</h3>
+                        <div id="discountsList">
+                            <!-- Discounts will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hadiths Section -->
+            <section id="hadiths" class="content-section">
+                <div class="section-header">
+                    <h2>إدارة الأحاديث والآيات</h2>
+                    <button class="btn-primary" onclick="openHadithModal()">
+                        <i class="fas fa-plus"></i> إضافة حديث/آية جديدة
+                    </button>
+                </div>
+                
+                <div class="hadiths-container" id="hadithsContainer">
+                    <!-- Hadiths will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Donations Section -->
+            <section id="donations" class="content-section">
+                <div class="section-header">
+                    <h2>سجل التبرعات</h2>
+                    <div class="header-actions">
+                        <button class="btn-secondary" onclick="exportDonations()">
+                            <i class="fas fa-download"></i> تصدير Excel
+                        </button>
+                        <button class="btn-secondary" onclick="printDonations()">
+                            <i class="fas fa-print"></i> طباعة
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="donations-table-container glass-card">
+                    <table class="donations-table">
+                        <thead>
+                            <tr>
+                                <th>رقم الطلب</th>
+                                <th>التاريخ</th>
+                                <th>الاسم</th>
+                                <th>الهاتف</th>
+                                <th>المبلغ</th>
+                                <th>الحالة</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="donationsTableBody">
+                            <!-- Donations will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="content-section">
+                <div class="settings-container">
+                    <div class="settings-card glass-card">
+                        <h3>الإعدادات العامة</h3>
+                        <div class="form-group">
+                            <label>اسم المنصة</label>
+                            <input type="text" id="platformName" value="سقيا الماء">
+                        </div>
+                        <div class="form-group">
+                            <label>البريد الإلكتروني</label>
+                            <input type="email" id="platformEmail" value="info@suqyama.com">
+                        </div>
+                        <div class="form-group">
+                            <label>رقم الهاتف</label>
+                            <input type="tel" id="platformPhone" value="966500000000">
+                        </div>
+                        <button class="btn-primary" onclick="saveSettings()">
+                            حفظ الإعدادات
+                        </button>
                     </div>
                     
-                    <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> نشر الإعلان المميز</button>
-                </form>
+                    <div class="settings-card glass-card">
+                        <h3>إعدادات الدفع</h3>
+                        <div class="form-group">
+                            <label>PayPal Email</label>
+                            <input type="email" id="paypalEmail" placeholder="your-email@paypal.com">
+                        </div>
+                        <div class="form-group">
+                            <label>مفتاح Stripe</label>
+                            <input type="text" id="stripeKey" placeholder="sk_test_...">
+                        </div>
+                        <button class="btn-primary" onclick="savePaymentSettings()">
+                            حفظ إعدادات الدفع
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Product Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h3 id="productModalTitle">إضافة منتج جديد</h3>
+                <button class="modal-close" onclick="closeModal('productModal')">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
+            <form id="productForm">
+                <div class="form-group">
+                    <label>اسم المنتج</label>
+                    <input type="text" id="productName" required>
+                </div>
+                <div class="form-group">
+                    <label>الوصف</label>
+                    <textarea id="productDescription" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>السعر (ريال)</label>
+                    <input type="number" id="productPrice" required>
+                </div>
+                <div class="form-group">
+                    <label>رابط الصورة</label>
+                    <input type="url" id="productImage" placeholder="https://...">
+                </div>
+                <div class="form-group">
+                    <label>الشارة (اختياري)</label>
+                    <input type="text" id="productBadge" placeholder="مثال: الأكثر مبيعاً">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('productModal')">
+                        إلغاء
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        حفظ
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 
-    <!-- قسم الهيرو -->
-    <header class="hero">
-        <div class="hero-content">
-            <h1>سوق <span class="highlight">ويب أيديا</span> للإعلانات</h1>
-            <p>المنصة الأمثل للتجار لعرض منتجاتهم ووصولها لأكبر شريحة من العملاء. انشر إعلانك بكل سهولة بعد الموافقة الإدارية.</p>
-            <div class="hero-buttons">
-                <a href="#products" class="btn btn-primary">استعرض المنتجات</a>
-                <a href="javascript:void(0);" class="btn btn-secondary" onclick="redirectToInstagram()">
-                    اطلع نشر إعلان <i class="fab fa-instagram"></i>
-                </a>
-                <a href="javascript:void(0);" class="btn btn-primary" onclick="openAuthModal()">
-                    <i class="fas fa-user-plus"></i> انشاء حساب جديد
-                </a>
+    <!-- Discount Modal -->
+    <div class="modal" id="discountModal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h3>إضافة خصم جديد</h3>
+                <button class="modal-close" onclick="closeModal('discountModal')">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
-        </div>
-        <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="منصة ويب أيديا">
-        </div>
-    </header>
-
-    <!-- قسم المنتجات -->
-    <section id="products" class="products-section">
-        <div class="section-header">
-            <h2>الإعلانات المنشورة</h2>
-            <p>استعرض أحدث المنتجات المعروضة من قبل تجارنا المعتمدين.</p>
-        </div>
-        <div class="products-container" id="productsContainer"></div>
-    </section>
-
-    <!-- قسم كيفية العمل -->
-    <section id="how-it-works" class="how-section">
-        <h2>كيف تعمل المنصة؟</h2>
-        <div class="steps">
-            <div class="step">
-                <div class="step-icon">1</div>
-                <h3>انشاء حساب</h3>
-                <p>سجل في الموقع ببياناتك الأساسية.</p>
-                <a href="javascript:void(0);" onclick="openAuthModal()" style="color: #4361ee; font-weight: 600; margin-top: 10px; display: inline-block;">
-                    <i class="fas fa-user-plus"></i> انشاء حساب الآن
-                </a>
-            </div>
-            <div class="step">
-                <div class="step-icon">2</div>
-                <h3>التواصل لطلب النشر</h3>
-                <p>اضغط على زر "التواصل لنشر إعلانك" للتواصل مع الإدارة عبر الإنستجرام.</p>
-            </div>
-            <div class="step">
-                <div class="step-icon">3</div>
-                <h3>انتظار الموافقة</h3>
-                <p>ستقوم الإدارة بمراجعة طلبك وترقية حسابك إلى "تاجر".</p>
-            </div>
-            <div class="step">
-                <div class="step-icon">4</div>
-                <h3>بدء النشر</h3>
-                <p>بعد الموافقة، يمكنك تسجيل الدخول وإضافة منتجاتك وعرضها للجميع.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- الفوتر -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">Webaidea</div>
-            <p>منصة رائدة لتجارة إلكترونية آمنة ومنظمة. نربط التجار بالعملاء بثقة وسهولة.</p>
-            <div class="footer-links">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-            </div>
-            <p class="copyright">© 2023 ويب أيديا. جميع الحقوق محفوظة.</p>
-        </div>
-    </footer>
-
-    <!-- نافذة عرض المنتج بالتفصيل -->
-    <div id="productDetailModal" class="modal detail-modal">
-        <div class="modal-content detail-content">
-            <span class="close-detail" onclick="closeDetailModal()">&times;</span>
-            <div class="detail-body" id="detailBody"></div>
+            <form id="discountForm">
+                <div class="form-group">
+                    <label>اسم الخصم</label>
+                    <input type="text" id="discountName" required>
+                </div>
+                <div class="form-group">
+                    <label>نوع الخصم</label>
+                    <select id="discountModalType">
+                        <option value="percentage">نسبة مئوية</option>
+                        <option value="fixed">مبلغ ثابت</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>القيمة</label>
+                    <input type="number" id="discountModalValue" required>
+                </div>
+                <div class="form-group">
+                    <label>تاريخ البدء</label>
+                    <input type="date" id="discountStartDate" required>
+                </div>
+                <div class="form-group">
+                    <label>تاريخ الانتهاء</label>
+                    <input type="date" id="discountEndDate" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('discountModal')">
+                        إلغاء
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        حفظ
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
+
+    <!-- Hadith Modal -->
+    <div class="modal" id="hadithModal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h3 id="hadithModalTitle">إضافة حديث/آية جديدة</h3>
+                <button class="modal-close" onclick="closeModal('hadithModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="hadithForm">
+                <div class="form-group">
+                    <label>النوع</label>
+                    <select id="hadithType" required>
+                        <option value="hadith">حديث شريف</option>
+                        <option value="verse">آية قرآنية</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>النص</label>
+                    <textarea id="hadithText" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>المصدر</label>
+                    <input type="text" id="hadithSource" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('hadithModal')">
+                        إلغاء
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        حفظ
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
 
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>
